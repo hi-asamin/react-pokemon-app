@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { createSelector } from '@reduxjs/toolkit';
-import { getPokemon } from "../usecases/pokemon";
+import { setPokemon } from "../../../usecases/pokemon";
 import _ from "lodash";
 
 const pokemonSelector = createSelector(
@@ -13,7 +13,7 @@ export const Pokemon = (props) => {
   const pokemonName = props.match.params.pokemon;
   const pokemonState = useSelector(pokemonSelector);
   useEffect(() => {
-    getPokemon(pokemonName);
+    setPokemon(pokemonName);
   }, []);
 
   const ShowData = () => {

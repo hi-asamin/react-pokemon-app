@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createSelector } from '@reduxjs/toolkit';
-import _ from "lodash";
-import { getPokemonList } from "../usecases/pokemon-list";
-// import ReactPaginate from "react-paginate";
+import { setPokemonList } from "../../../usecases/pokemon-list";
+
+import { Loading } from '../../util/loading';
+import { PokemonCard } from '../pokemon-card';
 
 const pokemonListSelector = createSelector(
   (state) => state['PokemonList'],
@@ -15,26 +16,31 @@ export const PokemonList = (props) => {
   const [search, setSearch] = useState("");
   const pokemonList = useSelector(pokemonListSelector);
   useEffect(() => {
-    getPokemonList(1);
+    setPokemonList(1);
   }, []);
   const searchPokemon = () => {
     props.history.push(`/${search}`);
   }
+  console.log(pokemonList.data)
 
   const ShowData = () => {
     if (pokemonList.loading) {
-      return <p>Loading...</p>
+      return <Loading />
     }
 
-    if (!_.isEmpty(pokemonList.data)) {
+    if (pokemonList.data) {
       return(
         <div className={"list-wrapper"}>
-          {pokemonList.data.map(el => {
+          {pokemonList.data.map((pokemon, i) => {
             return(
-              <div className={"pokemon-item"}>
-                <p>{el.name}</p>
-                <Link to={`/pokemon/${el.name}`}>View</Link>
-              </div>
+              <>
+                <PokemonCard
+                  key={i}
+                  name={pokemon.name}
+                  url={pokemon.url}
+                />
+                <Link to={`/pokemon/${pokemon.name}`}>View</Link>
+              </>
             )
           })}
         </div>
@@ -49,13 +55,13 @@ export const PokemonList = (props) => {
   };
 
   return(
-    <div>
+    <>
       <div className={"search-wrapper"}>
         <p>Search: </p>
         <input type="text" onChange={e => setSearch(e.target.value)}/>
         <button onClick={searchPokemon}>Search</button>
       </div>
       {ShowData()}
-    </div>
+    </>
   )
 };

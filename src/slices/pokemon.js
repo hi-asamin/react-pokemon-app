@@ -17,10 +17,7 @@ export const PokemonSlice = createSlice({
     success: (state, action) => ({
       ...state,
       loading: false,
-      data: {
-        ...state.data,
-        [action.pokemonName]: action.payload
-      }
+      data: action.payload,
     }),
     failed: (state) => ({
       ...state,
