@@ -21,7 +21,7 @@ export const PokemonListSlice = createSlice({
       data: action.payload.results,
       count: action.payload.count
     }),
-    failed: (state, action) => ({
+    failed: (state) => ({
       ...state,
       loading: false,
       message: 'failed...'
@@ -30,4 +30,3 @@ export const PokemonListSlice = createSlice({
 })
 
 export const PokemonListAction = PokemonListSlice.actions;
-export const PokemonListReducer = PokemonListSlice.reducer;

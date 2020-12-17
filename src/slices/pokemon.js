@@ -22,7 +22,7 @@ export const PokemonSlice = createSlice({
         [action.pokemonName]: action.payload
       }
     }),
-    failed: (state, action) => ({
+    failed: (state) => ({
       ...state,
       loading: false,
       message: 'failed...'
@@ -31,4 +31,3 @@ export const PokemonSlice = createSlice({
 })
 
 export const PokemonAction = PokemonSlice.actions;
-export const PokemonReducer = PokemonSlice.reducer;

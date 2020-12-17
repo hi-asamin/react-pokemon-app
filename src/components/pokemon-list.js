@@ -17,7 +17,6 @@ export const PokemonList = (props) => {
   useEffect(() => {
     getPokemonList(1);
   }, []);
-  console.log(pokemonList)
   const searchPokemon = () => {
     props.history.push(`/${search}`);
   }
@@ -57,15 +56,6 @@ export const PokemonList = (props) => {
         <button onClick={searchPokemon}>Search</button>
       </div>
       {ShowData()}
-      {/* {!_.isEmpty(pokemonList.data) && (
-        <ReactPaginate
-          pageCount={Math.ceil(pokemonList.count / 15)}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={1}
-          onPageChange={(data) => FetchData(data.selected + 1)}
-          containerClassName={"pagination"}
-        />
-      )} */}
     </div>
   )
 };
