@@ -31,13 +31,12 @@ export const PokemonList = (props) => {
     if (pokemonList.data) {
       return(
         <div className={"list-wrapper"}>
-          {pokemonList.data.map((pokemon, i) => {
+          {pokemonList.data.map(pokemon => {
             return(
               <>
                 <PokemonCard
-                  key={i}
+                  key={pokemon.name}
                   name={pokemon.name}
-                  url={pokemon.url}
                 />
                 <Link to={`/pokemon/${pokemon.name}`}>View</Link>
               </>

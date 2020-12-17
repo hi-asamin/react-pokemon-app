@@ -9,9 +9,9 @@ export const AppRoute = () => {
     <Router>
       <Switch>
       <Redirect exact path="/" to={"/pokemon"} />
-        <Route exact path="/pokemon" exact component={PokemonList} />
-        <Route exact path="/pokemon/:pokemon" exact component={Pokemon} />
-        <Route exact path="/not-found" exact component={NotFound} />
+        <Route exact path="/pokemon" component={PokemonList} />
+        <Route exact path="/pokemon/:pokemon" component={Pokemon} />
+        <Route exact path="/not-found" component={NotFound} />
         <Redirect to="/not-found" />
       </Switch>
     </Router>
