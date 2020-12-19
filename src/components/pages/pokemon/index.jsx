@@ -1,81 +1,57 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { createSelector } from '@reduxjs/toolkit';
-import { setPokemon } from "../../../usecases/pokemon";
-import _ from "lodash";
+import React, { useState, useEffect } from "react";
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
 
-const pokemonSelector = createSelector(
-  (state) => state['Pokemon'],
-  (state) => state,
-)
+import { getPokemon } from '../../../usecases/pokemon';
+import color from '../../../config/color.json'
 
 export const Pokemon = (props) => {
+  let unmounted = false;
   const pokemonName = props.match.params.pokemon;
-  const pokemonState = useSelector(pokemonSelector);
+  const [pokemon, setPokemon] = useState();
   useEffect(() => {
-    setPokemon(pokemonName);
-  }, []);
-
-  const ShowData = () => {
-    if (!_.isEmpty(pokemonState.data[pokemonName])) {
-      const pokeData = pokemonState.data[pokemonName];
-      return(
-        <div className={"pokemon-wrapper"}>
-          <div className={"item"}>
-            <h1>Sprites</h1>
-            <img src={pokeData.sprites.front_default} alt=""/>
-            <img src={pokeData.sprites.back_default} alt=""/>
-            <img src={pokeData.sprites.front_shiny} alt=""/>
-            <img src={pokeData.sprites.back_shiny} alt=""/>
-          </div>
-          <div className="item">
-            <h1>Stats</h1>
-            {pokeData.stats.map(el => {
-              return <p>{el.stat.name} {el.base_stat}</p>
-            })}
-          </div>
-          <div className="item">
-            <h1>Abilities</h1>
-            {pokeData.abilities.map(el => {
-              return <p>{el.ability.name}</p>
-            })}
-          </div>
-        </div>
-      )
+    if (!unmounted) {
+      getPokemon(pokemonName).then(res => {
+        setPokemon(res);
+      });
     }
+    return () => { unmounted = true }
+  });
 
-    if (pokemonState.loading) {
-      return <p>Loading...</p>
-    }
-
-    if (pokemonState.errorMsg !== "") {
-      return <p>{pokemonState.errorMsg}</p>
-    }
-
-    return <p>error getting pokemon</p>
+  const cardStyle = {
+    margin: 'auto',
+    textAlign: 'center',
   }
 
-  return(
+  return (
     <>
-      {ShowData()}
-      <Card>
-        <CardActionArea>
-          {/* <CardMedia>
-            <img src={pokemon.sprites.front_default} alt='' />
-          </CardMedia> */}
+      {pokemon && (
+        <Card style={cardStyle}>
+          <CardHeader title={pokemonName} titleTypographyProps={{variant: 'h2'}}/>
+          <CardMedia>
+            <img src={pokemon.sprites.front_default} alt=""/>
+            <img src={pokemon.sprites.back_default} alt=""/>
+            <img src={pokemon.sprites.front_shiny} alt=""/>
+            <img src={pokemon.sprites.back_shiny} alt=""/>
+          </CardMedia>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-            {pokemonName}
-            </Typography>
+            <div>
+              {
+                pokemon.types.map(type => {
+                  return (
+                    <div className='card-type' style={{ backgroundColor: color[type.type.name] }}>
+                      {type.type.name}
+                    </div>
+                  )
+                })
+              }
+            </div>
           </CardContent>
-        </CardActionArea>
-      </Card>
+        </Card>
+      )}
     </>
-  )
-};
+  );
+}
