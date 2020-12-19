@@ -36,7 +36,7 @@ export const PokemonList = () => {
               {pokemonList.data.map(pokemon => {
                 return(
                   <>
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={pokemon.name}>
+                    <Grid item xs={12} sm={6} md={4} lg={4} key={pokemon.name}>
                       <PokemonCard
                         name={pokemon.name}
                       />

@@ -11,7 +11,7 @@ export const AppRoute = () => {
   return (
     <Router>
       <Header />
-      <Container maxWidth="md">
+      <Container maxWidth="md" style={{ paddingTop: "1rem" }}>
         <Switch>
         <Redirect exact path="/" to={"/pokemon"} />
           <Route exact path="/pokemon" component={PokemonList} />
