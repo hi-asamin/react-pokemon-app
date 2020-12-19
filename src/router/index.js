@@ -4,16 +4,22 @@ import { Pokemon } from '../components/pages/pokemon';
 import { PokemonList } from '../components/pages/pokemon-list';
 import { NotFound } from '../components/pages/not-found';
 
+import Container from '@material-ui/core/Container';
+import { Header } from '../components/util/header';
+
 export const AppRoute = () => {
   return (
     <Router>
-      <Switch>
-      <Redirect exact path="/" to={"/pokemon"} />
-        <Route exact path="/pokemon" component={PokemonList} />
-        <Route exact path="/pokemon/:pokemon" component={Pokemon} />
-        <Route exact path="/not-found" component={NotFound} />
-        <Redirect to="/not-found" />
-      </Switch>
+      <Header />
+      <Container maxWidth="md">
+        <Switch>
+        <Redirect exact path="/" to={"/pokemon"} />
+          <Route exact path="/pokemon" component={PokemonList} />
+          <Route exact path="/pokemon/:pokemon" component={Pokemon} />
+          <Route exact path="/not-found" component={NotFound} />
+          <Redirect to="/not-found" />
+        </Switch>
+      </Container>
     </Router>
   );
 }
