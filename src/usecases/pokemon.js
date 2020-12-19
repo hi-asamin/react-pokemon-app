@@ -6,7 +6,6 @@ export const setPokemon = async (pokemonName) => {
   try {
     dispatch(PokemonAction.loading());
     const res = await Service.getPokemon(pokemonName);
-    console.log(res.data)
     dispatch(PokemonAction.success(res.data))
   } catch (e) {
     dispatch(PokemonAction.failed());
