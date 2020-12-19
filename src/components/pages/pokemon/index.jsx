@@ -4,6 +4,12 @@ import { createSelector } from '@reduxjs/toolkit';
 import { setPokemon } from "../../../usecases/pokemon";
 import _ from "lodash";
 
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+
 const pokemonSelector = createSelector(
   (state) => state['Pokemon'],
   (state) => state,
@@ -56,9 +62,20 @@ export const Pokemon = (props) => {
   }
 
   return(
-    <div className={"poke"}>
-      <h1>{pokemonName}</h1>
+    <>
       {ShowData()}
-    </div>
+      <Card>
+        <CardActionArea>
+          {/* <CardMedia>
+            <img src={pokemon.sprites.front_default} alt='' />
+          </CardMedia> */}
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            {pokemonName}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </>
   )
 };
