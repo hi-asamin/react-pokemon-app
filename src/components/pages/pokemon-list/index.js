@@ -21,7 +21,10 @@ export const PokemonList = (props) => {
   const searchPokemon = () => {
     props.history.push(`/${search}`);
   }
-  console.log(pokemonList.data)
+
+  const background = {
+    backgroundColor: '#F5F5F5',
+  }
 
   const ShowData = () => {
     if (pokemonList.loading) {
@@ -30,7 +33,7 @@ export const PokemonList = (props) => {
 
     if (pokemonList.data) {
       return(
-        <div className={"list-wrapper"}>
+        <div className={"list-wrapper"} style={background}>
           {pokemonList.data.map(pokemon => {
             return(
               <>
