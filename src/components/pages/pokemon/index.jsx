@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 
+import { TypeChip } from '../../util/chip';
 import { getPokemon } from '../../../usecases/pokemon';
 import color from '../../../config/color.json'
 
@@ -42,9 +43,10 @@ export const Pokemon = (props) => {
               {
                 pokemon.types.map(type => {
                   return (
-                    <div className='card-type' style={{ backgroundColor: color[type.type.name] }}>
-                      {type.type.name}
-                    </div>
+                    // <div className='card-type' style={{ backgroundColor: color[type.type.name] }}>
+                    //   {type.type.name}
+                    // </div>
+                    <TypeChip type={type.type.name} />
                   )
                 })
               }
