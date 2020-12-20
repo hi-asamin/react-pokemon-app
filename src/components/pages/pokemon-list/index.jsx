@@ -21,14 +21,9 @@ export const PokemonList = () => {
 
   return(
     <>
-      <Grid
-        container
-        justify="center"
-      >
+      <Grid container justify="center">
         {/* ポケモン一覧取得中のメッセージ表示領域 */}
-        {pokemonList.loading && (
-          <Loading />
-        )}
+        {pokemonList.loading && ( <Loading /> )}
         {/* ポケモン一覧が取得できた場合の表示領域 */}
         {pokemonList.data && (
           <Grid item xs={12}>
@@ -40,9 +35,7 @@ export const PokemonList = () => {
           </Grid>
         )}
         {/* エラーがあった場合のメッセージ表示領域 */}
-        {pokemonList.errorMsg && (
-          <p>{pokemonList.errorMsg}</p>
-        )}
+        {pokemonList.errorMsg && ( <p>{pokemonList.errorMsg}</p> )}
       </Grid>
     </>
   )
