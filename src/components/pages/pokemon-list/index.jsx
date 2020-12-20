@@ -34,15 +34,7 @@ export const PokemonList = () => {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2}>
               {pokemonList.data.map(pokemon => {
-                return(
-                  <>
-                    <Grid item xs={12} sm={6} md={4} lg={4} key={pokemon.name}>
-                      <PokemonCard
-                        name={pokemon.name}
-                      />
-                    </Grid>
-                  </>
-                )
+                return <PokemonCard name={pokemon.name} />
               })}
             </Grid>
           </Grid>

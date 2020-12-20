@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
@@ -30,31 +31,31 @@ export const PokemonCard = (props) => {
 
   return (
     <>
-      {pokemon && (
-        <Link onClick={() => { history.push(`/pokemon/${pokemon.name}`) }}>
-          <Card style={cardStyle}>
-            <CardActionArea>
-              <CardMedia>
-                <img src={pokemon.sprites.front_default} alt='' />
-              </CardMedia>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                {t(pokemon.name)}
-                </Typography>
-                <div>
-                  {
-                    pokemon.types.map(type => {
-                      return (
-                        <TypeChip type={type.type.name} />
-                      )
-                    })
-                  }
-                </div>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Link>
-      )}
+      <Grid item xs={12} sm={6} md={4} lg={4} key={name}>
+        {pokemon && (
+          <Link onClick={() => { history.push(`/pokemon/${pokemon.name}`) }}>
+            <Card style={cardStyle}>
+              <CardActionArea>
+                <CardMedia>
+                  <img src={pokemon.sprites.front_default} alt='' />
+                </CardMedia>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                  {t(pokemon.name)}
+                  </Typography>
+                  <div>
+                    {pokemon.types.map(type => {
+                        return (
+                          <TypeChip type={type.type.name} />
+                        )
+                    })}
+                  </div>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        )}
+      </Grid>
     </>
   );
 }
