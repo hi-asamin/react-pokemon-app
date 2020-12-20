@@ -12,6 +12,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import jajson from '../../../locales/ja.json';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -76,6 +78,12 @@ export const Header = () => {
   const {t, i18n} = useTranslation();
   const [search, setSearch] = useState("");
   const searchPokemon = (name) => {
+    const result = Object.keys(jajson).filter(key => { 
+      return jajson[key] === name
+     });
+     if (result.length) {
+       name = result;
+     }
     history.push(`/pokemon/${name}`);
   }
   const handleChange = (value) => {
