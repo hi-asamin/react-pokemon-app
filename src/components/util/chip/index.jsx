@@ -18,9 +18,10 @@ export const TypeChip = (props) => {
   const type = props.type;
   const { t } = useTranslation();
   const classes = useStyles({ backgroundColor: type });
+  const transrateKey = `type.${type}`;
   return (
     <>
-      <Chip variant="outlined" size="medium" label={t(type)} className={classes.chip} />
+      <Chip variant="outlined" size="medium" label={t(transrateKey)} className={classes.chip} />
     </>
   )
 }
