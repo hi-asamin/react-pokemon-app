@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  appbar: {
+    backgroundColor: 'black',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -80,8 +83,8 @@ export const Header = () => {
   };
 
   return (
-    <div className={classes.root} style={{ backgroud: 'white' }}>
-      <AppBar position="static">
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <IconButton
             edge="start"
