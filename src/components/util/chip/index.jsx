@@ -6,8 +6,9 @@ import color from '../../../config/color.json'
 const useStyles = makeStyles({
   chip: props => ({
     backgroundColor: color[props.backgroundColor],
+    color: 'white',
     margin: '0 2px',
-    width: '60px',
+    width: '70px',
   })
 });
 

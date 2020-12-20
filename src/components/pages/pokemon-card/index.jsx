@@ -8,8 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
+import { TypeChip } from '../../util/chip';
 import { getPokemon } from '../../../usecases/pokemon';
-// import color from '../../../config/color.json'
 
 export const PokemonCard = (props) => {
   const { name } = props;
@@ -39,6 +39,15 @@ export const PokemonCard = (props) => {
                 <Typography gutterBottom variant="h5" component="h2">
                 {pokemon.name}
                 </Typography>
+                <div>
+                  {
+                    pokemon.types.map(type => {
+                      return (
+                        <TypeChip type={type.type.name} />
+                      )
+                    })
+                  }
+                </div>
               </CardContent>
             </CardActionArea>
           </Card>
