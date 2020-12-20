@@ -45,9 +45,9 @@ export const PokemonCard = (props) => {
                   </Typography>
                   <div>
                     {pokemon.types.map(type => {
-                        return (
-                          <TypeChip type={type.type.name} />
-                        )
+                      return (
+                        <TypeChip type={type.type.name} />
+                      )
                     })}
                   </div>
                 </CardContent>

@@ -103,7 +103,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            {t('title')}
+            <Button color="inherit" onClick={() => { history.push('/pokemon') }}>{t('title')}</Button>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
