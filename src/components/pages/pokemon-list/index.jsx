@@ -46,8 +46,6 @@ export const PokemonList = () => {
           count={pageCount}
           page={page}
           size="large"
-          showFirstButton
-          showLastButton
           onChange={handleChange}
           style={{ paddingTop: "1rem", paddingBottom: '1rem' }} 
         />
