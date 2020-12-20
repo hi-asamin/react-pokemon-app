@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -68,10 +70,14 @@ const useStyles = makeStyles((theme) => ({
 export const Header = () => {
   const classes = useStyles();
   const history = useHistory();
+  const {t, i18n} = useTranslation();
   const [search, setSearch] = useState("");
   const searchPokemon = (name) => {
     history.push(`/pokemon/${name}`);
   }
+  const handleChange = (value) => {
+    i18n.changeLanguage(value);
+  };
 
   return (
     <div className={classes.root} style={{ backgroud: 'white' }}>
@@ -86,7 +92,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            React Pokemon App
+            {t('title')}
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -109,6 +115,8 @@ export const Header = () => {
               }}
             />
           </div>
+          <Button color="inherit" onClick={() => { handleChange('ja') }}>日本語</Button>
+          <Button color="inherit" onClick={() => { handleChange('en') }}>English</Button>
         </Toolbar>
       </AppBar>
     </div>

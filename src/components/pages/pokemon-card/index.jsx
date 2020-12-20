@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,6 +15,7 @@ import { getPokemon } from '../../../usecases/pokemon';
 export const PokemonCard = (props) => {
   const { name } = props;
   const history = useHistory();
+  const { t } = useTranslation();
   const [pokemon, setPokemon] = useState();
   useEffect(() => {
     getPokemon(name).then(res => {
@@ -37,7 +39,7 @@ export const PokemonCard = (props) => {
               </CardMedia>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                {pokemon.name}
+                {t(pokemon.name)}
                 </Typography>
                 <div>
                   {

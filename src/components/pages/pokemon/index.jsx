@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,6 +13,7 @@ export const Pokemon = (props) => {
   let unmounted = false;
   const pokemonName = props.match.params.pokemon;
   const [pokemon, setPokemon] = useState();
+  const { t } = useTranslation();
   useEffect(() => {
     if (!unmounted) {
       getPokemon(pokemonName).then(res => {
@@ -30,7 +32,7 @@ export const Pokemon = (props) => {
     <>
       {pokemon && (
         <Card style={cardStyle}>
-          <CardHeader title={pokemonName} titleTypographyProps={{variant: 'h2'}}/>
+          <CardHeader title={t(pokemonName)} titleTypographyProps={{variant: 'h2'}}/>
           <CardMedia>
             <img src={pokemon.sprites.front_default} alt=""/>
             <img src={pokemon.sprites.back_default} alt=""/>
