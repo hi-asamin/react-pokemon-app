@@ -1,4 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
+
 import Chip from '@material-ui/core/Chip';
 
 import color from '../../../config/color.json'
@@ -14,10 +16,11 @@ const useStyles = makeStyles({
 
 export const TypeChip = (props) => {
   const type = props.type;
+  const { t } = useTranslation();
   const classes = useStyles({ backgroundColor: type });
   return (
     <>
-      <Chip variant="outlined" size="medium" label={type} className={classes.chip} />
+      <Chip variant="outlined" size="medium" label={t(type)} className={classes.chip} />
     </>
   )
 }
