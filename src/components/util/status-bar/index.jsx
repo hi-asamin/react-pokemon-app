@@ -34,7 +34,7 @@ export const StatusBar = (props) => {
       <Grid container spacing={3}>
         <Grid item xs={2}>{t(transrateKey)}</Grid>
         <Grid item xs={9}>
-          <BorderLinearProgress variant="determinate" value={param / 1.3} />
+          <BorderLinearProgress variant="determinate" value={param / 1.9} />
         </Grid>
       </Grid>
     </>
