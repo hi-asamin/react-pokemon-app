@@ -11,6 +11,8 @@ import { StatusBar } from '../../util/status-bar';
 import { TypeChip } from '../../util/chip';
 import { getPokemon } from '../../../usecases/pokemon';
 
+import './index.scss';
+
 export const Pokemon = (props) => {
   const unmounted = useRef(false);
   const pokemonName = props.match.params.pokemon;
@@ -26,17 +28,6 @@ export const Pokemon = (props) => {
     fetchData();
     return () => { unmounted.current = true };
   });
-
-  const styles = {
-    card: {
-      margin: 'auto',
-      textAlign: 'center',
-    },
-    baseImage: {
-      margin: '0 auto 0 0',
-      width: '20rem',
-    }
-  }
 
   const status = {};
   if (pokemon) {
@@ -75,11 +66,11 @@ export const Pokemon = (props) => {
   return (
     <>
       {pokemon && (
-        <Card style={styles.card}>
+        <Card className="pokemon-card">
           <CardTitle pokemonNumber={pokemon.id} types={showTypeChips()} />
           <CardHeader title={t(pokemonName)} titleTypographyProps={{variant: 'h2'}}/>
             <CardContent>
-              <img src={pokemon.sprites.front_default} alt="" style={styles.baseImage}/>
+              <img src={pokemon.sprites.front_default} alt="" className="pokemon-card-base-image"/>
               <CardMedia>
                 <img src={pokemon.sprites.front_default} alt=""/>
                 <img src={pokemon.sprites.back_default} alt=""/>
