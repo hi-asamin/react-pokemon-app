@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Provider } from 'react-redux';
 import { AppRoute } from './router';
 import { store } from './store';
