@@ -1,7 +1,7 @@
 export const NotFound = () => {
-  return(
+  return (
     <>
       <h1>Pokemon Not Found...</h1>
     </>
-  )
+  );
 };

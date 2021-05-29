@@ -10,4 +10,4 @@ export const setPokemonList = async (page) => {
   } catch (e) {
     dispatch(PokemonListAction.failed());
   }
-}
+};

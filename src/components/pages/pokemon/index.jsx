@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Card from '@material-ui/core/Card';
@@ -26,12 +26,14 @@ export const Pokemon = (props) => {
       }
     };
     fetchData();
-    return () => { unmounted.current = true };
+    return () => {
+      unmounted.current = true;
+    };
   });
 
   const status = {};
   if (pokemon) {
-    pokemon.stats.forEach(stat => {
+    pokemon.stats.forEach((stat) => {
       switch (stat.stat.name) {
         case 'hp':
           status['hp'] = stat['base_stat'];
@@ -58,36 +60,48 @@ export const Pokemon = (props) => {
   }
 
   const showTypeChips = () => {
-    return pokemon.types.map(type => {
-      return ( <TypeChip type={type.type.name} /> )
-    })
-  }
+    return pokemon.types.map((type) => {
+      return <TypeChip type={type.type.name} />;
+    });
+  };
 
   return (
     <>
       {pokemon && (
         <Card className="pokemon-card">
           <CardTitle pokemonNumber={pokemon.id} types={showTypeChips()} />
-          <CardHeader title={t(pokemonName)} titleTypographyProps={{variant: 'h2'}}/>
-            <CardContent>
-              <img src={pokemon.sprites.front_default} alt="" className="pokemon-card-base-image"/>
-              <CardMedia>
-                <img src={pokemon.sprites.front_default} alt=""/>
-                <img src={pokemon.sprites.back_default} alt=""/>
-                <img src={pokemon.sprites.front_shiny} alt=""/>
-                <img src={pokemon.sprites.back_shiny} alt=""/>
-              </CardMedia>
-            </CardContent>
+          <CardHeader title={t(pokemonName)} titleTypographyProps={{ variant: 'h2' }} />
+          <CardContent>
+            <img src={pokemon.sprites.front_default} alt="" className="pokemon-card-base-image" />
+            <CardMedia>
+              <img src={pokemon.sprites.front_default} alt="" />
+              <img src={pokemon.sprites.back_default} alt="" />
+              <img src={pokemon.sprites.front_shiny} alt="" />
+              <img src={pokemon.sprites.back_shiny} alt="" />
+            </CardMedia>
+          </CardContent>
           <CardContent>
             <StatusBar status={'HP'} type={pokemon.types[0].type.name} param={status.hp} />
             <StatusBar status={'attack'} type={pokemon.types[0].type.name} param={status.attack} />
-            <StatusBar status={'defense'} type={pokemon.types[0].type.name} param={status.defense} />
+            <StatusBar
+              status={'defense'}
+              type={pokemon.types[0].type.name}
+              param={status.defense}
+            />
             <StatusBar status={'speed'} type={pokemon.types[0].type.name} param={status.speed} />
-            <StatusBar status={'specialAttack'} type={pokemon.types[0].type.name} param={status.specialAttack} />
-            <StatusBar status={'specialDefense'} type={pokemon.types[0].type.name} param={status.specialDefense} />
+            <StatusBar
+              status={'specialAttack'}
+              type={pokemon.types[0].type.name}
+              param={status.specialAttack}
+            />
+            <StatusBar
+              status={'specialDefense'}
+              type={pokemon.types[0].type.name}
+              param={status.specialDefense}
+            />
           </CardContent>
         </Card>
       )}
     </>
   );
-}
+};

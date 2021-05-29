@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
   types: {
     margin: '0 0 0 auto',
-  }
+  },
 }));
 
 export const CardTitle = (props) => {
@@ -26,10 +26,12 @@ export const CardTitle = (props) => {
             {pokemonNumber}
           </Typography>
           <div className={classes.types}>
-            {types.map(type => { return type })}
+            {types.map((type) => {
+              return type;
+            })}
           </div>
         </Toolbar>
       </AppBar>
     </>
   );
-}
+};

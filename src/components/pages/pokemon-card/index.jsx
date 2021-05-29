@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,7 @@ export const PokemonCard = (props) => {
   const { t } = useTranslation();
   const [pokemon, setPokemon] = useState();
   useEffect(() => {
-    getPokemon(name).then(res => {
+    getPokemon(name).then((res) => {
       setPokemon(res);
     });
   });
@@ -27,27 +27,29 @@ export const PokemonCard = (props) => {
   const cardStyle = {
     margin: 'auto',
     textAlign: 'center',
-  }
+  };
 
   return (
     <>
       <Grid item xs={12} sm={6} md={4} lg={4} key={name}>
         {pokemon && (
-          <Link onClick={() => { history.push(`/pokemon/${pokemon.name}`) }}>
+          <Link
+            onClick={() => {
+              history.push(`/pokemon/${pokemon.name}`);
+            }}
+          >
             <Card style={cardStyle}>
               <CardActionArea>
                 <CardMedia>
-                  <img src={pokemon.sprites.front_default} alt='' />
+                  <img src={pokemon.sprites.front_default} alt="" />
                 </CardMedia>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                  {t(pokemon.name)}
+                    {t(pokemon.name)}
                   </Typography>
                   <div>
-                    {pokemon.types.map(type => {
-                      return (
-                        <TypeChip type={type.type.name} />
-                      )
+                    {pokemon.types.map((type) => {
+                      return <TypeChip type={type.type.name} />;
                     })}
                   </div>
                 </CardContent>
@@ -58,4 +60,4 @@ export const PokemonCard = (props) => {
       </Grid>
     </>
   );
-}
+};

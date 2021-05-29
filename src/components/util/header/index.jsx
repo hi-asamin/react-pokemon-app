@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -75,17 +75,17 @@ const useStyles = makeStyles((theme) => ({
 export const Header = () => {
   const classes = useStyles();
   const history = useHistory();
-  const {t, i18n} = useTranslation();
-  const [search, setSearch] = useState("");
+  const { t, i18n } = useTranslation();
+  const [search, setSearch] = useState('');
   const searchPokemon = (name) => {
-    const result = Object.keys(jajson).filter(key => { 
-      return jajson[key] === name
-     });
-     if (result.length) {
-       name = result;
-     }
+    const result = Object.keys(jajson).filter((key) => {
+      return jajson[key] === name;
+    });
+    if (result.length) {
+      name = result;
+    }
     history.push(`/pokemon/${name}`);
-  }
+  };
   const handleChange = (value) => {
     i18n.changeLanguage(value);
   };
@@ -103,7 +103,14 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Button color="inherit" onClick={() => { history.push('/pokemon') }}>{t('title')}</Button>
+            <Button
+              color="inherit"
+              onClick={() => {
+                history.push('/pokemon');
+              }}
+            >
+              {t('title')}
+            </Button>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -117,8 +124,8 @@ export const Header = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={e => setSearch(e.target.value)}
-              onKeyDown={e => {
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => {
                 if (e.keyCode === 13) {
                   // エンターキー押下時の処理
                   searchPokemon(e.target.value);
@@ -126,10 +133,24 @@ export const Header = () => {
               }}
             />
           </div>
-          <Button color="inherit" onClick={() => { handleChange('ja') }}>日本語</Button>
-          <Button color="inherit" onClick={() => { handleChange('en') }}>English</Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              handleChange('ja');
+            }}
+          >
+            日本語
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              handleChange('en');
+            }}
+          >
+            English
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};

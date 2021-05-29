@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loading: false,
   data: {},
-  message: ''
+  message: '',
 };
 
 export const PokemonSlice = createSlice({
@@ -22,9 +22,9 @@ export const PokemonSlice = createSlice({
     failed: (state) => ({
       ...state,
       loading: false,
-      message: 'failed...'
+      message: 'failed...',
     }),
-  }
-})
+  },
+});
 
 export const PokemonAction = PokemonSlice.actions;
