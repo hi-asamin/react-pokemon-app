@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Card from '@material-ui/core/Card';
@@ -14,7 +14,6 @@ import { getPokemon } from '../../../usecases/pokemon';
 import './index.scss';
 
 export const Pokemon = (props) => {
-  const unmounted = useRef(false);
   // eslint-disable-next-line react/destructuring-assignment
   const pokemonName = props.match.params.pokemon;
   const [pokemon, setPokemon] = useState();
@@ -22,15 +21,10 @@ export const Pokemon = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getPokemon(pokemonName);
-      if (!unmounted.current) {
-        setPokemon(response);
-      }
+      setPokemon(response);
     };
     fetchData();
-    return () => {
-      unmounted.current = true;
-    };
-  });
+  }, [pokemonName]);
 
   const status = {};
   if (pokemon) {
