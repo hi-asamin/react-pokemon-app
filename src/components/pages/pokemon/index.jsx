@@ -15,6 +15,7 @@ import './index.scss';
 
 export const Pokemon = (props) => {
   const unmounted = useRef(false);
+  // eslint-disable-next-line react/destructuring-assignment
   const pokemonName = props.match.params.pokemon;
   const [pokemon, setPokemon] = useState();
   const { t } = useTranslation();
@@ -36,22 +37,22 @@ export const Pokemon = (props) => {
     pokemon.stats.forEach((stat) => {
       switch (stat.stat.name) {
         case 'hp':
-          status['hp'] = stat['base_stat'];
+          status.hp = stat.base_stat;
           break;
         case 'attack':
-          status['attack'] = stat['base_stat'];
+          status.attack = stat.base_stat;
           break;
         case 'defense':
-          status['defense'] = stat['base_stat'];
+          status.defense = stat.base_stat;
           break;
         case 'speed':
-          status['speed'] = stat['base_stat'];
+          status.speed = stat.base_stat;
           break;
         case 'special-attack':
-          status['specialAttack'] = stat['base_stat'];
+          status.specialAttack = stat.base_stat;
           break;
         case 'special-defense':
-          status['specialDefense'] = stat['base_stat'];
+          status.specialDefense = stat.base_stat;
           break;
         default:
           break;
@@ -59,11 +60,7 @@ export const Pokemon = (props) => {
     });
   }
 
-  const showTypeChips = () => {
-    return pokemon.types.map((type) => {
-      return <TypeChip type={type.type.name} />;
-    });
-  };
+  const showTypeChips = () => pokemon.types.map((type) => <TypeChip type={type.type.name} />);
 
   return (
     <>
@@ -81,21 +78,17 @@ export const Pokemon = (props) => {
             </CardMedia>
           </CardContent>
           <CardContent>
-            <StatusBar status={'HP'} type={pokemon.types[0].type.name} param={status.hp} />
-            <StatusBar status={'attack'} type={pokemon.types[0].type.name} param={status.attack} />
+            <StatusBar status="HP" type={pokemon.types[0].type.name} param={status.hp} />
+            <StatusBar status="attack" type={pokemon.types[0].type.name} param={status.attack} />
+            <StatusBar status="defense" type={pokemon.types[0].type.name} param={status.defense} />
+            <StatusBar status="speed" type={pokemon.types[0].type.name} param={status.speed} />
             <StatusBar
-              status={'defense'}
-              type={pokemon.types[0].type.name}
-              param={status.defense}
-            />
-            <StatusBar status={'speed'} type={pokemon.types[0].type.name} param={status.speed} />
-            <StatusBar
-              status={'specialAttack'}
+              status="specialAttack"
               type={pokemon.types[0].type.name}
               param={status.specialAttack}
             />
             <StatusBar
-              status={'specialDefense'}
+              status="specialDefense"
               type={pokemon.types[0].type.name}
               param={status.specialDefense}
             />

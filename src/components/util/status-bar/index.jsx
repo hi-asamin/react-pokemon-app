@@ -7,8 +7,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 import color from '../../../config/color.json';
 
-const StyleWithThemeProps = (props) => {
-  return withStyles(
+const StyleWithThemeProps = (props) =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  withStyles(
     (theme) => ({
       root: {
         height: 10,
@@ -24,7 +25,6 @@ const StyleWithThemeProps = (props) => {
     }),
     { withTheme: true },
   )(LinearProgress);
-};
 
 export const StatusBar = (props) => {
   const { status, type, param } = props;

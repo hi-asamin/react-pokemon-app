@@ -18,5 +18,6 @@ export const getPokemon = async (pokemonName) => {
     return res.data;
   } catch (e) {
     dispatch(PokemonAction.failed());
+    return null;
   }
 };

@@ -25,11 +25,7 @@ export const CardTitle = (props) => {
           <Typography variant="h6" color="inherit">
             {pokemonNumber}
           </Typography>
-          <div className={classes.types}>
-            {types.map((type) => {
-              return type;
-            })}
-          </div>
+          <div className={classes.types}>{types.map((type) => type)}</div>
         </Toolbar>
       </AppBar>
     </>
