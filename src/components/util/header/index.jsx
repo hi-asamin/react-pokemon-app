@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -77,17 +77,23 @@ export const Header = () => {
   const history = useHistory();
   const { t, i18n } = useTranslation();
   const [search, setSearch] = useState('');
+  const [lang, setLang] = useState('ja');
+
   const searchPokemon = (name) => {
-    const result = Object.keys(jajson).filter((key) => {
-      return jajson[key] === name;
-    });
+    const result = Object.keys(jajson).filter((key) => jajson[key] === name);
     if (result.length) {
+      // eslint-disable-next-line no-param-reassign
       name = result;
     }
     history.push(`/pokemon/${name}`);
   };
-  const handleChange = (value) => {
-    i18n.changeLanguage(value);
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
+
+  const handleChange = () => {
+    setLang(lang === 'en' ? 'ja' : 'en');
   };
 
   return (
@@ -136,18 +142,10 @@ export const Header = () => {
           <Button
             color="inherit"
             onClick={() => {
-              handleChange('ja');
+              handleChange();
             }}
           >
-            日本語
-          </Button>
-          <Button
-            color="inherit"
-            onClick={() => {
-              handleChange('en');
-            }}
-          >
-            English
+            {lang === 'en' ? '日本語' : '英語'}
           </Button>
         </Toolbar>
       </AppBar>
